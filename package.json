@@ -1,6 +1,6 @@
 {
   "name": "pomegranate-express-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Provides Express server hooks for Pomegranate-Express",
   "main": "index.js",
   "scripts": {
