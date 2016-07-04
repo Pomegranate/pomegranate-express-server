@@ -23,9 +23,9 @@ module.exports = {
     address: 'localhost'
   },
   metadata: {
-    name: 'Launcher',
-    layer: 'server',
-    type: 'none'
+    name: 'ExpressServer',
+    type: 'none',
+    depends: ['PostRouter']
   },
   plugin: {
     load: function(inject, loaded) {
@@ -38,13 +38,15 @@ module.exports = {
     start: function(done) {
       var self = this;
       this.server = this.app.listen(this.options.port, function(){
-
+        self.applicationRunning = true
         self.Logger.log('Started express server on port ' + self.options.port)
         done()
       });
     },
     stop: function(done) {
-      this.server.close();
+      if(this.server && this.applicationRunning){
+        this.server.close();
+      }
       done()
     }
   }
